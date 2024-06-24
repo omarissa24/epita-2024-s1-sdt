@@ -1,0 +1,10 @@
+venv
+.DS_Store
+*.html
+*_files/
+.ipynb_checkpoints
+/.quarto/
+/_site/
+airflow
+*.ipynb
+exercises

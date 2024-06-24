@@ -1,0 +1,174 @@
+---
+title: "Introduction"
+author: "Pierre Formont"
+format: 
+  revealjs:
+    highlight-style: a11y
+    smaller: true
+    code-block-background: true
+    code-block-border-left: true
+    code-line-numbers: true
+---
+
+## About me
+
+- 2006 - 2009: Engineering school - signal and image processing (ENSE3)
+- 2009 - 2013: PhD in classification for radar imagery
+- 2014 - 2017: Data Scientist @ Datapole
+- 2017 - 2022: Data Scientist / Data Engineer @ [Ogury](https://www.linkedin.com/company/ogury-ltd/)
+- 2022 - now: Lead Data Engineer @ [Echo Analytics](https://www.linkedin.com/company/echo-analytics/)
+
+## Syllabus
+
+1. Why data structuration ?
+2. Common data formats
+3. Data transportation and storage systems:
+    - APIs
+    - Storage systems
+    - Databases
+
+## Tools and technologies
+
+- Github
+- Python
+- Airflow
+- REST APIs
+- sqlite
+
+## Grading
+
+- single exam in the last course,
+- 1h30 - 2h,
+- will cover everything we addressed during the course,
+- basic functionality will grant you a passing grade,
+- adding more features will allow you getting a better grade.
+
+## Ressources
+
+- Github repository: [https://github.com/Tutuchan/epita-2024-s1-sdt](https://github.com/Tutuchan/epita-2024-s1-sdt)
+- contact:
+  - Github: @tutuchan
+  - mail: pierre@formont.fr
+  - LinkedIn: [https://www.linkedin.com/in/pierre-formont-b0b40019/](https://www.linkedin.com/in/pierre-formont-b0b40019/)
+
+## Use the course repository
+
+## Clone the repository
+
+- fork this repository: https://github.com/tutuchan/epita-2024-s1-sdt.git
+- open a new terminal, go to the folder where you want to clone the fork and clone it
+
+```{.bash}
+cd whatever/folder
+git clone https://github.com/<your-github-username>/epita-2024-s1-sdt.git
+```
+
+- go to the cloned folder
+
+```{.bash}
+cd epita-2024-s1-sdt
+```
+
+## Install Python
+
+## Install Python for Mac
+
+Install Python **3.11** from the [Python website](https://www.python.org/downloads/).
+
+You can use [pyenv](https://github.com/pyenv/pyenv) instead.
+
+## Install Python for Windows
+
+**You can't use Windows directly in this course.**
+
+Please install Ubuntu from the Windows Store and proceed with the Linux instructions.
+
+## Install Python for Linux
+
+```{.bash}
+sudo apt update && sudo apt upgrade -y
+sudo apt install software-properties-common -y
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt install python3.11 python3.11-venv -y
+python3.11 -m ensurepip
+```
+
+## Create a virtual environment
+
+- make sure the `python` version is `3.11`:
+
+```{.bash}
+python --version
+# or
+python3.11 --version
+```
+
+- create a virtual environment
+
+```{.bash}
+python -m venv venv # might need to use python311 here
+source venv/bin/activate
+# make sure the virtual environment python is activated
+which python
+# for me, it returns /Users/pformont/tutuchan/courses/epita-2024-s1-sdt/venv/bin/python
+```
+
+## Install Airflow
+
+## Pre-requisites
+
+- make sure the `8080` port is available,
+- make sure the virtual environment is correctly activated:
+
+```{.bash}
+which pip
+# should return something like /Users/<your-user>/whatever/folder/epita-2024-s1-sdt/venv/bin/pip
+# for me, it returns /Users/pformont/tutuchan/courses/epita-2024-s1-sdt/venv/bin/pip
+```
+
+- if it does not, run:
+
+```{.bash}
+source venv/bin/activate
+```
+
+- read [this documentation](https://airflow.apache.org/docs/apache-airflow/stable/start.html) to install Airflow
+- summary:
+
+```{.bash}
+AIRFLOW_VERSION=2.8.0
+PYTHON_VERSION="$(python --version | cut -d " " -f 2 | cut -d "." -f 1-2)"
+CONSTRAINT_URL="https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-${PYTHON_VERSION}.txt"
+
+pip install "apache-airflow==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}"
+```
+
+## Run Airflow
+
+- run Airflow:
+
+```{.bash}
+# still in the same virtual environment
+export AIRFLOW_HOME=$(pwd)/airflow
+airflow standalone
+```
+
+- in the terminal, you should see something like this:
+
+```plain
+ webserver | [2023-12-26 09:21:18 +0100] [85451] [INFO] Listening at: http://0.0.0.0:8080 (85451)
+[...]
+standalone | Airflow is ready
+standalone | Login with username: admin  password: VG9yPG6XnTRgQEcW
+standalone | Airflow Standalone is for development purposes only. Do not use this in production!
+```
+
+- this is the local url, user and password to login to Airflow
+
+## Access Airflow 
+
+- an `airflow` folder should be created with multiple files and folders:
+    - you can find the password in `standalone_admin_password.txt`
+    - `airflow.cfg` contains the Airflow configuration, we'll use it during the course
+- if you can connect to Airflow on the provided URL ([http://0.0.0.0:8080](http://0.0.0.0:8080) by default or [http://localhost:8080](http://localhost:8080)) using the `admin` user and the provided password, you're good to go !
+
